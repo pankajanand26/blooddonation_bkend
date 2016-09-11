@@ -1,0 +1,37 @@
+from django.db import models
+
+# Create your models here.
+class Donor(models.Model):
+     id_donor = models.IntegerField(default=0)
+     first_name = models.CharField(max_length=200)
+     last_name = models.CharField(max_length=200)
+     location = models.CharField(max_length=200)
+     city = models.CharField(max_length=200)
+     about_yourself = models.CharField(max_length=200)
+     gender = models.CharField(max_length=200)
+     available = models.CharField(max_length=200)
+     phone_number = models.IntegerField(default=0)
+     blood_group = models.CharField(max_length=200)
+     last_donated = models.DateTimeField('last donated')
+     trans_date = models.DateTimeField('transaction date')
+
+class Requester(models.Model):
+     id_requester = models.IntegerField(default=0)
+     first_name = models.CharField(max_length=200)
+     last_name = models.CharField(max_length=200)
+     location = models.CharField(max_length=200)
+     city = models.CharField(max_length=200)
+     phone_number = models.IntegerField(default=0)
+     blood_group = models.CharField(max_length=200)
+     units = models.IntegerField(default=0)
+     pub_date = models.DateTimeField('date published')
+     trans_date = models.DateTimeField('transaction date')
+
+class Donations(models.Model):
+     id_donaton = models.IntegerField(default=0)
+     don_date = models.DateTimeField('donation date')
+     donor = models.ForeignKey(Donor) 
+     requester = models.ForeignKey(Requester) 
+     trans_date = models.DateTimeField('transaction date')
+
+
